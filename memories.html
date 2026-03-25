@@ -113,11 +113,10 @@
         // Override the default loadPhotos function to populate the correct grid
         function initializeMemoriesPage() {
             const memories = [
-                { case: 1, title: 'The Smile That Changed Everything' },
-                { case: 2, title: 'The Hug That Felt Like Home' },
-                { case: 3, title: 'The Moment My Heart Said Yes' },
-                { case: 4, title: 'Quiet Moments, Loud Love' },
-                { case: 5, title: 'Forever Starts With You' }
+                { id: 1, title: 'The Smile That Changed Everything' },
+                { id: 2, title: 'The Hug That Felt Like Home' },
+                { id: 3, title: 'The Moment My Heart Said Yes' },
+                { id: 4, title: 'Every Day, Forever Yours' }
             ];
 
             const cardGrid = document.getElementById('memories-grid');
@@ -130,16 +129,16 @@
                 card.className = 'card memory-card slide-in-up';
                 card.style.animationDelay = (index * 100 / 1000) + 's';
 
-                const imgSrc = `images/photos/case_${String(mem.case).padStart(2, '0')}.jpg`;
+                const imgSrc = `images/${mem.id}.jpg`;
 
                 card.innerHTML = `
                     <div class="memory-card-inner">
                         <div class="memory-card-front">
-                            <img src="${imgSrc}" alt="${mem.title}" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8; border-radius: 8px;" onerror="this.style.display='none';">
-                            <div style="position: absolute; color: #4A9B9E; font-weight: bold; font-size: 1.3rem;">Click to flip</div>
+                            <img src="${imgSrc}" alt="${mem.title}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;" onerror="this.style.display='none';">
+                            <div style="position: absolute; background: rgba(74, 155, 158, 0.8); color: white; padding: 0.5rem 1rem; border-radius: 5px; font-weight: bold;">Click to flip</div>
                         </div>
                         <div class="memory-card-back">
-                            <h4>Case 0${mem.case}</h4>
+                            <h4>Memory ${index + 1}</h4>
                             <p>${mem.title}</p>
                         </div>
                     </div>
