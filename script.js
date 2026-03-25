@@ -123,6 +123,12 @@ const AudioManager = {
     // Restore music state from AppState
     this.isPlaying = AppState.musicPlaying;
     
+    // Restore playback position from sessionStorage
+    const savedTime = sessionStorage.getItem('audioCurrentTime');
+    if (savedTime) {
+      this.audio.currentTime = parseFloat(savedTime);
+    }
+    
     // If music should be playing, unmute and start playback
     if (this.isPlaying) {
       this.audio.muted = false;
@@ -135,6 +141,7 @@ const AudioManager = {
     }
     
     this.updateToggleUI();
+    this.startAutoSave();
   },
 
   /**
@@ -166,6 +173,7 @@ const AudioManager = {
       AppState.musicPlaying = true;
       AppState.save();
       this.updateToggleUI();
+      this.saveCurrentTime();
     }
   },
 
@@ -179,6 +187,7 @@ const AudioManager = {
       AppState.musicPlaying = false;
       AppState.save();
       this.updateToggleUI();
+      this.saveCurrentTime();
     }
   },
 
@@ -198,6 +207,32 @@ const AudioManager = {
         toggle.title = 'Music Muted - Click to play';
       }
     }
+  },
+
+  /**
+   * Save current playback time to sessionStorage for persistence across page loads
+   */
+  saveCurrentTime() {
+    if (this.audio && !isNaN(this.audio.currentTime)) {
+      sessionStorage.setItem('audioCurrentTime', this.audio.currentTime);
+    }
+  },
+
+  /**
+   * Start auto-saving playback position every 500ms
+   */
+  startAutoSave() {
+    // Save current time before page unload
+    window.addEventListener('beforeunload', () => {
+      this.saveCurrentTime();
+    });
+
+    // Also save periodically while playing
+    setInterval(() => {
+      if (this.isPlaying && this.audio) {
+        this.saveCurrentTime();
+      }
+    }, 500);
   }
 };
 
