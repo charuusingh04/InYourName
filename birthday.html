@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Dr. Charu</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💙</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="birthday">
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-brand">💙 Dr. Charu's Heart Clinic</div>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <a href="index.html" style="text-decoration: none; color: #4A9B9E; font-weight: 500;">← Back</a>
+            <button class="music-toggle" title="Toggle Music">🔇</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="page-container">
+        <!-- Background heartbeat -->
+        <div class="bg-heartbeat">❤️</div>
+
+        <div class="content-wrapper">
+            <header>
+                <h1>Happy Birthday Dr. Charu</h1>
+                <p class="subtitle">
+                    The doctor who healed a heart she never even treated.
+                </p>
+            </header>
+
+            <!-- Birthday Message -->
+            <div class="card" style="background: linear-gradient(135deg, #FFF9FB 0%, #FFFBFE 100%); border: 2px solid #FFD6E8; max-width: 600px; margin: 2rem auto;">
+                <div style="font-size: 3rem; margin-bottom: 1.5rem; cursor: pointer; transition: transform 0.3s ease;" onclick="celebrateBirthday()">🎂✨</div>
+                
+                <div style="font-family: 'Great Vibes', cursive; font-size: 2rem; color: #FF99C5; margin-bottom: 2rem; letter-spacing: 1px;">
+                    To the most beautiful soul
+                </div>
+
+                <p style="font-size: 1.1rem; color: #666; line-height: 2; margin-bottom: 2rem; font-style: italic;">
+                    Dear Charu,
+                </p>
+
+                <p style="font-size: 1rem; color: #555; line-height: 1.9; margin-bottom: 1.5rem;">
+                    On your special day, I want you to know that meeting you was the best diagnosis the universe could have given me. You walked into my life like a stethoscope to my soul - and suddenly, everything that was broken started to heal.
+                </p>
+
+                <p style="font-size: 1rem; color: #555; line-height: 1.9; margin-bottom: 1.5rem;">
+                    You treat everyone with such grace, such compassion, such love. But you never realized - you were treating my heart all along, one smile at a time.
+                </p>
+
+                <p style="font-size: 1rem; color: #555; line-height: 1.9; margin-bottom: 1.5rem;">
+                    Happy Birthday to the woman who became my reason, my calm, my forever home.
+                </p>
+
+                <p style="font-size: 1rem; color: #FF99C5; font-style: italic; margin-bottom: 1rem;">
+                    With all my love,<br>
+                    <span style="font-family: 'Great Vibes', cursive; font-size: 1.5rem;">Apoorv</span>
+                </p>
+
+                <!-- Message Reveal Button -->
+                <button class="btn" onclick="revealMessage()" style="margin-right: 1rem; font-size: 0.95rem; padding: 0.8rem 1.5rem;">
+                    💌 Read More
+                </button>
+
+                <!-- Heartbeat Check Button -->
+                <button class="btn btn-secondary" onclick="checkHeartbeat()" style="font-size: 0.95rem; padding: 0.8rem 1.5rem;">
+                    💓 Heartbeat Check
+                </button>
+            </div>
+
+            <!-- Call to action -->
+            <div style="margin-top: 3rem;">
+                <button class="btn btn-secondary" onclick="navigateTo('love_report.html')" style="font-size: 1.2rem; padding: 1.5rem 2.5rem;">
+                    View Patient Report
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="background-music" loop style="display: none;"></audio>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

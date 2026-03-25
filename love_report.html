@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Medical Report</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💙</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="love-report">
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-brand">💙 Dr. Charu's Heart Clinic</div>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <a href="birthday.html" style="text-decoration: none; color: #4A9B9E; font-weight: 500;">← Back</a>
+            <button class="music-toggle" title="Toggle Music">🔇</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="page-container">
+        <div class="content-wrapper">
+            <header>
+                <h1>Medical Report</h1>
+                <p class="subtitle">Patient Diagnosis & Treatment Plan</p>
+            </header>
+
+            <!-- Medical Report Document -->
+            <div class="medical-report">
+                <!-- Header -->
+                <div style="text-align: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid #333;">
+                    <div style="font-weight: bold; font-size: 1.1rem;">DR. CHARU'S HEART CLINIC</div>
+                    <div style="font-size: 0.9rem; margin-top: 0.5rem;">Medical Report & Diagnosis</div>
+                </div>
+
+                <!-- Patient Information -->
+                <div class="report-section">
+                    <div class="report-label">Patient Name:</div>
+                    <div class="report-value">Apoorv</div>
+
+                    <div class="report-label">Doctor:</div>
+                    <div class="report-value">Dr. Charu</div>
+
+                    <div class="report-label">Condition Status:</div>
+                    <div class="report-value">Critical ❤️ (Life-Threatening Love)</div>
+
+                    <div class="report-label">Report Date:</div>
+                    <div class="report-value" id="report-date"></div>
+                </div>
+
+                <!-- Diagnosis -->
+                <div class="report-section">
+                    <div class="report-label">Primary Diagnosis:</div>
+                    <div class="report-value" style="font-size: 1.4rem; color: #FF99C5; font-weight: bold;">
+                        PERMANENT LOVE SYNDROME (Acute)
+                    </div>
+                </div>
+
+                <!-- Symptoms -->
+                <div class="report-section">
+                    <div class="report-label">Observed Symptoms:</div>
+                    <div style="margin-top: 1rem; line-height: 2;">
+                        <div class="symptom-item" onclick="revealSymptom(0)" style="cursor: pointer; padding: 0.5rem; border-radius: 4px; transition: all 0.3s ease;">
+                            <span class="symptom-icon">✓</span> <span class="symptom-text symptom-0" style="opacity: 0.5;">Click to reveal...</span>
+                        </div>
+                        <div class="symptom-item" onclick="revealSymptom(1)" style="cursor: pointer; padding: 0.5rem; border-radius: 4px; transition: all 0.3s ease;">
+                            <span class="symptom-icon">✓</span> <span class="symptom-text symptom-1" style="opacity: 0.5;">Click to reveal...</span>
+                        </div>
+                        <div class="symptom-item" onclick="revealSymptom(2)" style="cursor: pointer; padding: 0.5rem; border-radius: 4px; transition: all 0.3s ease;">
+                            <span class="symptom-icon">✓</span> <span class="symptom-text symptom-2" style="opacity: 0.5;">Click to reveal...</span>
+                        </div>
+                        <div class="symptom-item" onclick="revealSymptom(3)" style="cursor: pointer; padding: 0.5rem; border-radius: 4px; transition: all 0.3s ease;">
+                            <span class="symptom-icon">✓</span> <span class="symptom-text symptom-3" style="opacity: 0.5;">Click to reveal...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prescription -->
+                <div class="report-section">
+                    <div class="report-label">Treatment Prescription:</div>
+                    <div style="margin-top: 1rem; line-height: 2; font-style: italic;">
+                        <div>💊 <strong>Daily Dosage:</strong> Hugs from Dr. Charu</div>
+                        <div>💊 <strong>When Needed:</strong> Regular Smiles &amp; Warmth</div>
+                        <div>💊 <strong>Primary Medicine:</strong> Unlimited Kisses &amp; Affection</div>
+                        <div>💊 <strong>Long-term Treatment:</strong> Lifetime Companionship</div>
+                    </div>
+                </div>
+
+                <!-- Doctor's Note -->
+                <div class="report-section">
+                    <div class="report-label">Doctor's Note:</div>
+                    <div style="margin-top: 1rem; font-style: italic; color: #555;">
+                        "Patient's condition is permanent. Recommend continuous proximity to treatment source for optimal recovery. Condition improves significantly with presence of treating physician. Prognosis: Incurable, but beautifully managed. Follow-up: Lifetime."
+                    </div>
+                </div>
+
+                <!-- Signature -->
+                <div style="margin-top: 2rem; text-align: right; padding-top: 1rem; border-top: 1px solid #333;">
+                    <div style="font-size: 1.2rem; color: #FF99C5; font-family: 'Great Vibes', cursive; margin-bottom: 0.5rem;">
+                        Dr. Charu
+                    </div>
+                    <div style="font-size: 0.9rem; color: #999;">Medical Professional</div>
+                </div>
+            </div>
+
+            <!-- Call to action -->
+            <div style="margin-top: 3rem;">
+                <button class="btn" onclick="navigateTo('memories.html')" style="font-size: 1.1rem; padding: 1.2rem 2rem;">
+                    View Memory Gallery →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="background-music" loop style="display: none;"></audio>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Set current date on report
+        function setReportDate() {
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('report-date').textContent = today.toLocaleDateString('en-US', options);
+        }
+        document.addEventListener('DOMContentLoaded', setReportDate);
+    </script>
+</body>
+</html>

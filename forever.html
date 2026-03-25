@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forever - Charu's Birthday Gift</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💙</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="forever">
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-brand">💙 Dr. Charu's Heart Clinic</div>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <a href="heart_monitor.html" style="text-decoration: none; color: #4A9B9E; font-weight: 500;">← Back</a>
+            <button class="music-toggle" title="Toggle Music">🔇</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="page-container">
+        <div class="content-wrapper" style="position: relative; z-index: 1;">
+            <header>
+                <h1 style="font-size: 3.5rem; margin-bottom: 1.5rem;">In a world full of doctors...</h1>
+            </header>
+
+            <!-- Interactive Click Zones -->
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 400px; margin: 2rem auto; margin-bottom: 3rem;">
+                <div class="click-zone" onclick="clickZone('clinic')" style="padding: 1.5rem; background: linear-gradient(135deg, #E0EEF5, #B4D7E8); border-radius: 10px; text-align: center; cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent;">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏥</div>
+                    <div style="font-size: 0.9rem; font-weight: 500; color: #4A9B9E;">Where it began</div>
+                </div>
+                <div class="click-zone" onclick="clickZone('treatment')" style="padding: 1.5rem; background: linear-gradient(135deg, #FFE8F0, #FFD6E8); border-radius: 10px; text-align: center; cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent;">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">💉</div>
+                    <div style="font-size: 0.9rem; font-weight: 500; color: #FF99C5;">Your medicine</div>
+                </div>
+                <div class="click-zone" onclick="clickZone('love')" style="padding: 1.5rem; background: linear-gradient(135deg, #FFB6C8, #FF99C5); border-radius: 10px; text-align: center; cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent; color: white;">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">💖</div>
+                    <div style="font-size: 0.9rem; font-weight: 500;">What I feel</div>
+                </div>
+                <div class="click-zone" onclick="clickZone('forever')" style="padding: 1.5rem; background: linear-gradient(135deg, #FFD6E8, #FFC0D9); border-radius: 10px; text-align: center; cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent;">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">∞</div>
+                    <div style="font-size: 0.9rem; font-weight: 500; color: #FF99C5;">Our forever</div>
+                </div>
+            </div>
+
+            <!-- Click Zone Messages -->
+            <div id="zone-message" style="text-align: center; min-height: 30px; color: #4A9B9E; font-style: italic; margin-bottom: 2rem;"></div>
+            <div class="card" style="background: linear-gradient(135deg, #FFF9FB 0%, #FFFBFE 100%); border: 2px solid #FFD6E8; max-width: 700px; margin: 2rem auto; padding: 3rem;">
+                <p style="font-size: 1.3rem; font-weight: 600; color: #4A9B9E; line-height: 2; margin-bottom: 2rem;">
+                    you became the one who healed my soul.
+                </p>
+
+                <p style="font-size: 1.2rem; color: #666; line-height: 2; margin-bottom: 2rem;">
+                    Happy Birthday Charu.
+                </p>
+
+                <!-- Hidden Heart Icon for Secret Letter -->
+                <p style="margin-top: 3rem; color: #999; font-size: 0.95rem;">
+                    <span class="hidden-heart-icon" title="Click multiple times to discover a secret">💌</span>
+                </p>
+
+                <!-- Footer Message -->
+                <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #FFD6E8;">
+                    <p style="font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: #FF99C5; margin-bottom: 0.5rem;">
+                        Your patient.
+                    </p>
+                    <p style="font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: #FF99C5; margin-bottom: 0.5rem;">
+                        Your admirer.
+                    </p>
+                    <p style="font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: #FF99C5; margin-bottom: 1rem;">
+                        Your forever.
+                    </p>
+                    <p style="font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: #FF99C5; margin-bottom: 0;">
+                        — Apoorv
+                    </p>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div style="margin-top: 3rem; text-align: center;">
+                <button class="btn btn-ghost" onclick="navigateTo('index.html')" style="font-size: 0.95rem;">
+                    ↻ Start Over
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="background-music" loop style="display: none;"></audio>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        let zoneClicks = {
+            clinic: 0,
+            treatment: 0,
+            love: 0,
+            forever: 0
+        };
+
+        const zoneMessages = {
+            clinic: [
+                '💙 The place where our story started...',
+                '🩺 Where you save lives every day...',
+                '✨ A clinic full of hearts you\'ve healed...'
+            ],
+            treatment: [
+                '💊 My daily dose of happiness...',
+                '🩹 The medicine that makes me whole...',
+                '✓ Treatment complete - prognosis: forever'
+            ],
+            love: [
+                '💖 More than I ever thought possible...',
+                '❤️ A love that grows every single day...',
+                '✨ Love that\'s beyond medical explanation'
+            ],
+            forever: [
+                '∞ No expiration date on this love...',
+                '✓ A lifetime prescription...',
+                '💕 Forever with you, always'
+            ]
+        };
+
+        function clickZone(zone) {
+            const zones = document.querySelectorAll('.click-zone');
+            const clickedZone = event.target.closest('.click-zone');
+            
+            // Scale animation
+            if (clickedZone) {
+                clickedZone.style.transform = 'scale(1.15)';
+                setTimeout(() => {
+                    clickedZone.style.transform = 'scale(1)';
+                }, 200);
+            }
+
+            // Vibration feedback
+            Animations.vibrate([80, 40, 80]);
+
+            // Show message
+            const messages = zoneMessages[zone];
+            const messageDiv = document.getElementById('zone-message');
+            if (messages) {
+                const currentMessage = messages[Math.min(zoneClicks[zone], messages.length - 1)];
+                messageDiv.textContent = currentMessage;
+                zoneClicks[zone]++;
+            }
+
+            // Check if all zones have been clicked at least once
+            const allClicked = Object.values(zoneClicks).every(count => count > 0);
+            if (allClicked) {
+                setTimeout(() => {
+                    showSecretHint();
+                }, 500);
+            }
+        }
+
+        function showSecretHint() {
+            const hint = document.createElement('div');
+            hint.style.cssText = `
+                position: fixed; bottom: 30px; right: 30px;
+                background: #FFD6E8; padding: 1rem 1.5rem;
+                border-radius: 50px; color: #FF99C5;
+                font-weight: 600; animation: slideInUp 0.5s ease;
+                cursor: pointer; z-index: 100;
+            `;
+            hint.textContent = '💌 Scroll down for a secret...';
+            document.body.appendChild(hint);
+
+            setTimeout(() => hint.remove(), 4000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Gallery - Case History</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💙</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="memories">
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-brand">💙 Dr. Charu's Heart Clinic</div>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <a href="love_report.html" style="text-decoration: none; color: #4A9B9E; font-weight: 500;">← Back</a>
+            <button class="music-toggle" title="Toggle Music">🔇</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="page-container">
+        <div class="content-wrapper">
+            <header>
+                <h1>Memory Gallery</h1>
+                <p class="subtitle">Clinical Case History - Moments That Matter</p>
+            </header>
+
+            <p style="margin-bottom: 3rem; color: #666;">
+                Each moment with you has been documented in my heart's case file. Hover to see the memories.
+            </p>
+
+            <!-- Photo Cards Grid -->
+            <div class="card-grid" id="memories-grid">
+                <!-- Grid will be populated by JavaScript -->
+            </div>
+
+            <!-- Call to action -->
+            <div style="margin-top: 3rem;">
+                <button class="btn btn-secondary" onclick="navigateTo('reasons.html')" style="font-size: 1.1rem; padding: 1.2rem 2rem;">
+                    Why I Love You →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="background-music" loop style="display: none;"></audio>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Flip card CSS
+        const flipStyles = `
+            .memory-card {
+                perspective: 1000px;
+                height: 250px;
+                cursor: pointer;
+            }
+
+            .memory-card-inner {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                transition: transform 0.6s;
+                transform-style: preserve-3d;
+            }
+
+            .memory-card.flipped .memory-card-inner {
+                transform: rotateY(180deg);
+            }
+
+            .memory-card-front,
+            .memory-card-back {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                backface-visibility: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 8px;
+            }
+
+            .memory-card-front {
+                background: linear-gradient(135deg, #FFE8F0, #E0EEF5);
+            }
+
+            .memory-card-back {
+                background: linear-gradient(135deg, #4A9B9E, #FF99C5);
+                color: white;
+                transform: rotateY(180deg);
+                flex-direction: column;
+                padding: 2rem;
+                text-align: center;
+            }
+
+            .memory-card-back h4 {
+                margin-bottom: 1rem;
+                font-size: 1.2rem;
+            }
+
+            .memory-card-back p {
+                font-style: italic;
+                font-size: 0.95rem;
+            }
+        `;
+
+        // Add styles to head
+        const styleEl = document.createElement('style');
+        styleEl.textContent = flipStyles;
+        document.head.appendChild(styleEl);
+
+        // Override the default loadPhotos function to populate the correct grid
+        function initializeMemoriesPage() {
+            const memories = [
+                { case: 1, title: 'The Smile That Changed Everything' },
+                { case: 2, title: 'The Hug That Felt Like Home' },
+                { case: 3, title: 'The Moment My Heart Said Yes' },
+                { case: 4, title: 'Quiet Moments, Loud Love' },
+                { case: 5, title: 'Forever Starts With You' }
+            ];
+
+            const cardGrid = document.getElementById('memories-grid');
+            if (!cardGrid) return;
+
+            cardGrid.innerHTML = '';
+
+            memories.forEach((mem, index) => {
+                const card = document.createElement('div');
+                card.className = 'card memory-card slide-in-up';
+                card.style.animationDelay = (index * 100 / 1000) + 's';
+
+                const imgSrc = `images/photos/case_${String(mem.case).padStart(2, '0')}.jpg`;
+
+                card.innerHTML = `
+                    <div class="memory-card-inner">
+                        <div class="memory-card-front">
+                            <img src="${imgSrc}" alt="${mem.title}" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8; border-radius: 8px;" onerror="this.style.display='none';">
+                            <div style="position: absolute; color: #4A9B9E; font-weight: bold; font-size: 1.3rem;">Click to flip</div>
+                        </div>
+                        <div class="memory-card-back">
+                            <h4>Case 0${mem.case}</h4>
+                            <p>${mem.title}</p>
+                        </div>
+                    </div>
+                `;
+
+                card.addEventListener('click', function() {
+                    this.classList.toggle('flipped');
+                    Animations.vibrate([50, 30, 50]);
+                });
+
+                cardGrid.appendChild(card);
+            });
+        }
+
+        // Re-initialize when page loads
+        document.addEventListener('DOMContentLoaded', initializeMemoriesPage);
+    </script>
+</body>
+</html>

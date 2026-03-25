@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Monitor Analysis</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💙</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="heart-monitor">
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-brand">💙 Dr. Charu's Heart Clinic</div>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <a href="future.html" style="text-decoration: none; color: #4A9B9E; font-weight: 500;">← Back</a>
+            <button class="music-toggle" title="Toggle Music">🔇</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="page-container">
+        <div class="content-wrapper">
+            <header>
+                <h1>Heart Monitor</h1>
+                <p class="subtitle">Patient Emotional Analysis</p>
+            </header>
+
+            <!-- Heart Monitor Container -->
+            <div id="heart-monitor-container" style="margin: 3rem 0; max-width: 500px; margin-left: auto; margin-right: auto;">
+                <!-- Health Bars -->
+                <div style="margin-bottom: 2rem;">
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="font-weight: 600; color: #FF99C5;">Love Capacity</span>
+                            <span id="love-percent" style="color: #FF99C5; font-weight: 600;">0%</span>
+                        </div>
+                        <div style="background: #F0F0F0; border-radius: 10px; height: 20px; overflow: hidden;">
+                            <div id="love-bar" style="background: linear-gradient(90deg, #FF99C5, #FFD6E8); height: 100%; width: 0%; transition: width 1.2s ease-out;"></div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="font-weight: 600; color: #4A9B9E;">Happiness Level</span>
+                            <span id="happiness-percent" style="color: #4A9B9E; font-weight: 600;">0%</span>
+                        </div>
+                        <div style="background: #F0F0F0; border-radius: 10px; height: 20px; overflow: hidden;">
+                            <div id="happiness-bar" style="background: linear-gradient(90deg, #4A9B9E, #B4D7E8); height: 100%; width: 0%; transition: width 1.2s ease-out;"></div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="font-weight: 600; color: #FF6B9D;">Heart Rate</span>
+                            <span id="heartrate-percent" style="color: #FF6B9D; font-weight: 600;">0%</span>
+                        </div>
+                        <div style="background: #F0F0F0; border-radius: 10px; height: 20px; overflow: hidden;">
+                            <div id="heartrate-bar" style="background: linear-gradient(90deg, #FF6B9D, #FFB6C8); height: 100%; width: 0%; transition: width 1.2s ease-out;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diagnosis Section (Hidden initially) -->
+                <div id="diagnosis-section" style="display: none; background: #FFF9FB; padding: 2rem; border-radius: 10px; border: 2px solid #FFD6E8; margin-top: 2rem;">
+                    <h3 style="color: #FF99C5; margin-bottom: 1.5rem;">🏥 Diagnosis Report</h3>
+                    <div id="diagnosis-content" style="color: #666; line-height: 2; font-style: italic;">
+                        <!-- Diagnosis lines will appear here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Heartbeat Button -->
+            <div style="margin-top: 2rem; text-align: center;">
+                <button class="btn btn-secondary heartbeat-button" onclick="analyzeHeartbeat()" style="font-size: 1rem; padding: 1rem 2rem;">
+                    💓 Analyze Health
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="background-music" loop style="display: none;"></audio>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        function initializeHeartMonitor() {
+            // Auto-fill health bars on page load
+            setTimeout(() => {
+                animateHealthBar('love-bar', 88, 'love-percent');
+                animateHealthBar('happiness-bar', 100, 'happiness-percent');
+                animateHealthBar('heartrate-bar', 95, 'heartrate-percent');
+            }, 500);
+        }
+
+        function animateHealthBar(barId, targetPercent, percentId) {
+            const bar = document.getElementById(barId);
+            const percentDisplay = document.getElementById(percentId);
+            if (!bar) return;
+
+            let current = 0;
+            const increment = targetPercent / 24; // Animate over 1.2s
+            const interval = setInterval(() => {
+                current += increment;
+                if (current >= targetPercent) {
+                    current = targetPercent;
+                    clearInterval(interval);
+                }
+                bar.style.width = current + '%';
+                percentDisplay.textContent = Math.round(current) + '%';
+            }, 50);
+        }
+
+        function analyzeHeartbeat() {
+            const button = document.querySelector('.heartbeat-button');
+            button.disabled = true;
+            button.textContent = '🔍 Analyzing...';
+
+            setTimeout(() => {
+                const diagnosisSection = document.getElementById('diagnosis-section');
+                const diagnosisContent = document.getElementById('diagnosis-content');
+                diagnosisSection.style.display = 'block';
+                diagnosisContent.innerHTML = '';
+
+                const diagnoses = [
+                    '✓ Patient shows signs of permanent attachment to Dr. Charu',
+                    '✓ Love metrics indicate lifelong commitment pattern',
+                    '✓ Prognosis: Happily incurable, beautifully managed'
+                ];
+
+                let index = 0;
+                const displayInterval = setInterval(() => {
+                    if (index < diagnoses.length) {
+                        const line = document.createElement('div');
+                        line.textContent = diagnoses[index];
+                        line.style.animation = 'slideInUp 0.5s ease forwards';
+                        diagnosisContent.appendChild(line);
+                        Animations.vibrate([60, 40, 60]);
+                        index++;
+                    } else {
+                        clearInterval(displayInterval);
+                        button.disabled = false;
+                        button.textContent = '✓ Analyzed';
+                        // Trigger proposal popup when Analyzed button is clicked
+                        button.onclick = function() {
+                            showProposalPopup();
+                        };
+                    }
+                }, 600);
+            }, 2000);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initializeHeartMonitor);
+    </script>
+</body>
+</html>

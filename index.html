@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Dr. Charu's Heart Clinic</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💙</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="landing">
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-brand">💙 Dr. Charu's Heart Clinic</div>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <button class="music-toggle" title="Toggle Music">🔇</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="page-container">
+        <svg class="bg-heartbeat" viewBox="0 0 100 100" width="100" height="100">
+            <polyline points="0,50 10,50 20,30 30,70 40,50 50,50 70,50 80,45 90,40 100,45" 
+                      stroke="#FFD6E8" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </svg>
+
+        <div class="content-wrapper">
+            <header>
+                <h1>Welcome to Dr. Charu's Heart Clinic</h1>
+                <p style="font-size: 1.3rem; color: #FF99C5; font-style: italic; margin-bottom: 2rem;">
+                    Where one patient has been permanently admitted.
+                </p>
+                
+                <!-- Animated ECG Line -->
+                <div style="margin: 2rem 0;">
+                    <svg width="300" height="80" viewBox="0 0 300 80" style="margin: 0 auto; display: block;">
+                        <!-- ECG heartbeat pattern -->
+                        <rect x="0" y="0" width="300" height="80" fill="#E0EEF5" rx="5" opacity="0.3"/>
+                        <polyline points="0,40 20,40 30,20 40,60 50,40 60,40 80,40 85,38 90,36 95,38 100,40 120,40 130,25 140,55 150,40 160,40 180,40 190,38 200,35 210,38 220,40 240,40 250,20 260,60 270,40 280,40 300,40" 
+                                  stroke="#4A9B9E" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        
+                        <!-- Animated pulsing dot -->
+                        <circle cx="300" cy="40" r="3" fill="#FF99C5" opacity="0.8">
+                            <animate attributeName="r" from="3" to="6" dur="0.8s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" from="0.8" to="0" dur="0.8s" repeatCount="indefinite"/>
+                        </circle>
+                    </svg>
+                </div>
+            </header>
+
+            <div style="margin-top: 3rem;">
+                <p style="font-size: 1.1rem; margin-bottom: 2rem; color: #666;">
+                    Before you enter, we need to confirm a few things...
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Questions Modal -->
+    <div class="modal-overlay" id="questions-modal">
+        <div class="modal">
+            <h2>Question 1</h2>
+            <p>Are you Dr. Charu, the most beautiful doctor in the world?</p>
+            <div class="modal-buttons">
+                <button class="btn btn-ghost" data-answer="no" type="button">No</button>
+                <button class="btn" data-answer="yes" type="button">Yes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="background-music" loop style="display: none;"></audio>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
